@@ -2,6 +2,7 @@ import json
 import random
 import urllib.request
 import urllib
+import ast
 # Python3 type hints
 # https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html
 from typing import List, Dict, Any
@@ -13,7 +14,8 @@ def download():
     """ This function downloads the json data from the url."""
     # TODO add code here
     urldata = urllib.request.urlopen(url) # request utl to open 
-    data = json.loads(urldata.read().decode()) # loading json
+    data = json.loads(urldata.read().decode()) 
+    data = json.dumps(data,separators=(',',':'))# loading json
     return data
 
 
@@ -23,7 +25,8 @@ def extract_requests(text:str) -> List[Dict[str, Any]]:
         extracts and returns the array of promises.
     """
     # TODO add code here
-    return text['promises']
+    text1 = ast.literal_eval(text)
+    return text1['promises']
 
 
 def extract_titles(promises: List[Dict[str, Any]]) -> List[str]:
