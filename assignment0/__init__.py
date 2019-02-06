@@ -1,4 +1,5 @@
 from . import main
+
 def promise():
     text = main.download()
     promises = main.extract_requests(text)
